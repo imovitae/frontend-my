@@ -17,13 +17,13 @@ function App() {
   return (
     <Router>
       <Navbar click={() => setSideToggle(true)}  />
-      <SideDrawer show={sideToggle} />
+      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
       <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
       <main>
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/product/:id" element={<ProductScreen />} />
-          <Route path="/cart" element={<CartScreen />} />
+          <Route path="/" component={<HomeScreen />} />
+          <Route path="/product/:id" component={<ProductScreen />} />
+          <Route path="/cart" component={<CartScreen />} />
         </Routes>
       </main>
     </Router>
