@@ -1,24 +1,40 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import thunk from 'redux-thunk'; // Исправлено: использование default импорта
-import { composeWithDevTools } from "redux-devtools-extension";
+
+import { thunk } from 'redux-thunk';
+
+
+
+import { composeWithDevTools } from '@redux-devtools/extension';
+
+
 
 import { cartReducer } from "./reducers/cartReducers";
-import { getProductsReducer, getProductDetailsReducer } from "./reducers/productReducers";
 
-// Объединение всех редьюсеров в один корневой редьюсер
+import { getProductsReducer, getProductDetailsReducer,} from "./reducers/productReducers";
+
 const reducer = combineReducers({
   cart: cartReducer,
   getProducts: getProductsReducer,
   getProductDetails: getProductDetailsReducer,
 });
 
-// Создание массива промежуточных обработчиков
 const middleware = [thunk];
 
-// Создание хранилища с промежуточными обработчиками и инструментами разработки
+const cartItemsInLocalStorage = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
+
+const INITIAL_STATE = {
+  cart: {
+    cartItems: cartItemsInLocalStorage,
+  },
+};
+
 const store = createStore(
   reducer,
+  INITIAL_STATE,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
+
