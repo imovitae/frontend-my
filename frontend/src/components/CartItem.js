@@ -13,6 +13,7 @@ const CartScreen = () => {
             </div>
             <Link to={`/product/${111}`} className="cartitem__name">
                 <p>Product 1</p>
+
             </Link>
             <p className="cartitem__price">$499.99</p>
             <select className="cartitem__select">
