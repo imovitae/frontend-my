@@ -16,14 +16,14 @@ function App() {
   const [sideToggle, setSideToggle] = useState(false);
   return (
     <Router>
-      <Navbar click={() => setSideToggle(true)}  />
+      <Navbar click={() => setSideToggle(true)} />
       <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
       <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
       <main>
         <Routes>
-          <Route path="/" component={<HomeScreen />} />
-          <Route path="/product/:id" component={<ProductScreen />} />
-          <Route path="/cart" component={<CartScreen />} />
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/product/:id" element={<ProductScreen />} />
+          <Route path="/cart" element={<CartScreen />} />
         </Routes>
       </main>
     </Router>
